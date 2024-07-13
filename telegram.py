@@ -1,18 +1,21 @@
 import telepot
+from telepot.loop import MessageLoop
 from chatbot import Chatbot
 
-telegram = telepot.Bot("7472309964:AAFOWTCdhh3a1KDue87jWwQI5gFXVHvBUhY")
+chaveApi = "7472309964:AAFOWTCdhh3a1KDue87jWwQI5gFXVHvBUhY"
+telegram = telepot.Bot(chaveApi)
 bot = Chatbot("Vitoriamar")
 
 def recebendoMsg(msg):
-    frase = bot.escuta(frase=msg["text"])
-    resp = bot.pensa(frase)
-    bot.fala(resp)
-    #chatID = msg["chat"]["id"]
-    tipoMsg, tipoChat, chatID = telepot.glance(msg)
-    telegram.sendMessage(chatID, resp)
+    # Verifica se a mensagem contém texto
+    if 'text' in msg:
+        chatID = msg["chat"]["id"]
+        frase = msg["text"]
+        resp = bot.pensa(frase)
+        telegram.sendMessage(chatID, resp)
 
-telegram.message_loop(recebendoMsg)
+MessageLoop(telegram, recebendoMsg).run_as_thread()
 
+# Mantém o script rodando
 while True:
     pass
