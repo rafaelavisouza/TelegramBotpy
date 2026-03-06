@@ -2,7 +2,7 @@ import telepot
 from telepot.loop import MessageLoop
 from chatbot import Chatbot
 
-chaveApi = "7472309964:AAFOWTCdhh3a1KDue87jWwQI5gFXVHvBUhY"
+chaveApi = "COLOQUE_SUA_CHAVE_AQUI"
 telegram = telepot.Bot(chaveApi)
 bot = Chatbot("Vitoriamar")
 
